@@ -1,19 +1,34 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import HomePage from '../pages/HomePage';
-import Posts from '../pages/Posts';
-import About from '../pages/About';
-import NotFoundPage from '../pages/NotFoundPage';
-import PostIdPage from '../pages/PostIdPage';
+import { privateRoutes, publicRoutes } from '../routes/routes';
+import { findAllByDisplayValue } from '@testing-library/react';
+import { AuthContext } from '../context';
+import Loader from './UI/Loader/Loader';
 
 const AppRouter = () => {
+	const { isAuth, isLoading } = useContext(AuthContext);
+
+	if (isLoading) {
+		return <Loader />;
+	}
+
 	return (
 		<Routes>
-			<Route path="/" element={<HomePage />} />
-			<Route path="/posts" element={<Posts />} />
-			<Route path="/posts/:id" element={<PostIdPage />} />
-			<Route path="/about" element={<About />} />
-			<Route path="*" element={<NotFoundPage />} />
+			{isAuth
+				? privateRoutes.map((route) => (
+						<Route
+							key={route.element.toString()}
+							path={route.path}
+							element={route.element}
+						/>
+				  ))
+				: publicRoutes.map((route) => (
+						<Route
+							key={route.element.toString()}
+							path={route.path}
+							element={route.element}
+						/>
+				  ))}
 		</Routes>
 	);
 };
