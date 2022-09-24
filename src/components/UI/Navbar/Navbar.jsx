@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import MyButton from '../button/MyButton';
-import { useContext } from 'react';
 import { AuthContext } from '../../../context';
 
 const Navbar = () => {

@@ -21,7 +21,6 @@ function Posts() {
 	const [limit, setLimit] = useState(10);
 	const [page, setPage] = useState(1);
 	const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
-	// TODO ДЗ: сделать используя useMemo, тайминг 2 часа
 	const lastElement = useRef();
 
 	const [fetchPosts, isPostsLoading, postError] = useFetching(

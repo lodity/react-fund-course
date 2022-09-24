@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { getPagesArray } from '../../../utils/pages';
 
 const Pagination = ({ totalPages, page, changePage }) => {
-	let pagesArray = getPagesArray(totalPages);
-
+	let pagesArray = useMemo(getPagesArray, []);
 	return (
 		<div className="page__wrapper">
 			{pagesArray.map((p) => (

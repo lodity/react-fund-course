@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { privateRoutes, publicRoutes } from '../routes/routes';
-import { findAllByDisplayValue } from '@testing-library/react';
 import { AuthContext } from '../context';
 import Loader from './UI/Loader/Loader';
 
